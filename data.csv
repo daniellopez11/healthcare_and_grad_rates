@@ -1,0 +1,53 @@
+id,state,abbr,bachelors,lackHealthcare
+1,Alabama,AL,6.8,13.9
+2,Alaska,AK,7,15
+4,Arizona,AZ,6.9,14.4
+5,Arkansas,AR,7.4,16.3
+6,California,CA,9.5,14.8
+8,Colorado,CO,11.2,12.8
+9,Connecticut,CT,14.1,8.7
+10,Delaware,DE,8.5,8.7
+11,District of Columbia,DC,23.7,8.3
+12,Florida,FL,8.2,17.6
+13,Georgia,GA,8.2,20.9
+15,Hawaii,HI,7.5,8.1
+16,Idaho,ID,5.5,16.5
+17,Illinois,IL,12.9,11.9
+18,Indiana,IN,9,14.8
+19,Iowa,IA,9.8,7.7
+20,Kansas,KS,10.3,14.5
+21,Kentucky,KY,8.4,10
+22,Louisiana,LA,7.2,18.7
+23,Maine,ME,10.9,11
+24,Maryland,MD,12.7,9.2
+25,Massachusetts,MA,17.2,4.6
+26,Michigan,MI,9.7,10.3
+27,Minnesota,MN,12.8,7.3
+28,Mississippi,MS,5.7,18.8
+29,Missouri,MO,9.2,12.9
+30,Montana,MT,6.7,12.9
+31,Nebraska,NE,10.9,12.4
+32,Nevada,NV,5.4,17.1
+33,New Hampshire,NH,12,11.4
+34,New Jersey,NJ,14.4,12.5
+35,New Mexico,NM,5,15.4
+36,New York,NY,15.1,12.3
+37,North Carolina,NC,9.5,16.1
+38,North Dakota,ND,12.9,8.8
+39,Ohio,OH,9.5,10.2
+40,Oklahoma,OK,7.1,13.9
+41,Oregon,OR,7.6,11
+42,Pennsylvania,PA,12.1,10.1
+44,Rhode Island,RI,12.1,8
+45,South Carolina,SC,8.4,17.1
+46,South Dakota,SD,7.1,9.9
+47,Tennessee,TN,8.8,14.2
+48,Texas,TX,7.8,24.9
+49,Utah,UT,6.6,13.9
+50,Vermont,VT,12.7,6.7
+51,Virginia,VA,12.1,13.1
+53,Washington,WA,10.6,10.7
+54,West Virginia,WV,6.9,10.1
+55,Wisconsin,WI,10.5,8.5
+56,Wyoming,WY,6.6,15.1
+72,Puerto Rico,PR,7.6,6
