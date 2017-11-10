@@ -82,7 +82,7 @@ d3.csv("data.csv", function(error, healthData) {
       var stateName = data.state;
       var bachDegree = data.bachelors;
       var noHealth = data.lackHealthcare;
-      return (stateName + "<br>Bachelor Degree or Higher: " + bachDegree + "<br>Lack Healthcare: " + noHealth);
+      return (stateName + "<br>Bachelor Degree or Higher: " + bachDegree + "%" + "<br>Lack Healthcare: " + noHealth +"%");
     });
 
   chart.call(toolTip);
@@ -97,7 +97,7 @@ d3.csv("data.csv", function(error, healthData) {
     .attr("cy", function(data, index) {
         return yLinearScale(data.lackHealthcare);
     })
-    .attr("r", "5")
+    .attr("r", "10")
     .attr("fill", "grey")
     .on("click", function(data) {
         toolTip.show(data);
@@ -106,6 +106,20 @@ d3.csv("data.csv", function(error, healthData) {
     .on("mouseout", function(data, index) {
         toolTip.hide(data);
     });
+
+  chart.selectAll("circleText")
+    .data(healthData)
+    .enter().append("text")
+    .attr("class", "circleText")
+    .attr("x", function(data, index) {
+      return xLinearScale(data.bachelors);
+    })
+    .attr("y", function(data, index) {
+      return yLinearScale(data.lackHealthcare);
+    })
+    .attr("text-anchor", "middle")
+    .text(function(data, index) {
+      return data.abbr});
 
   chart.append("g")
     .attr("transform", `translate(0, ${height})`)
