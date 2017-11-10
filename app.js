@@ -4,10 +4,10 @@ var svgHeight = 500;
 
 // Define the chart's margins as an object
 var margin = {
-  top: 60,
-  right: 60,
+  top: 20,
+  right: 40,
   bottom: 60,
-  left: 60
+  left: 100
 };
 
 // Define dimensions of the chart area
@@ -20,9 +20,11 @@ var svg = d3
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight)
-  // Append a group area, then set its margins
-var chart = svg.append("g")
-  .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// Append a group area, then set its margins
+var chart = svg.append("g");
 
 // Append a div to the body to create tooltips, assign it a class
 d3.select(".chart")
@@ -55,13 +57,17 @@ d3.csv("data.csv", function(error, healthData) {
 
   // Set the domain for the xLinearScale function
   // d3.extent returns the an array containing the min and max values for the property specified
-  xLinearScale.domain(d3.extent(healthData, function(data) {
-    return data.bachelors;
-  }));
+  xLinearScale.domain([d3.min(healthData, function(data) {
+    return Math.round(data.bachelors) - 1;
+  }), d3.max(healthData, function(data) {
+    return Math.round(data.bachelors) + 1;
+  })]);
 
   // Set the domain for the yLinearScale function
-  yLinearScale.domain([0, d3.max(healthData, function(data) {
-    return data.lackHealthcare;
+  yLinearScale.domain([d3.min(healthData, function(data) {
+    return Math.round(data.lackHealthcare) - 1;
+  }), d3.max(healthData, function(data) {
+    return Math.round(data.lackHealthcare) + 1;
   })]);
 
   // Create two new functions passing the scales in as arguments
@@ -71,12 +77,12 @@ d3.csv("data.csv", function(error, healthData) {
 
   var toolTip = d3.tip()
     .attr("class", "tooltip")
-    .offset([80, -60])
+    .offset([-2, 115])
     .html(function(data) {
-    var stateName = data.state;
-    var bachDegree = data.bachelors;
-    var noHealth = data.lackHealthcare;
-    return (stateName + "<br> Bachelor Degree or Higher: " + bachDegree + "<br> Lack Healthcare: " + noHealth);
+      var stateName = data.state;
+      var bachDegree = data.bachelors;
+      var noHealth = data.lackHealthcare;
+      return (stateName + "<br>Bachelor Degree or Higher: " + bachDegree + "<br>Lack Healthcare: " + noHealth);
     });
 
   chart.call(toolTip);
@@ -91,15 +97,12 @@ d3.csv("data.csv", function(error, healthData) {
     .attr("cy", function(data, index) {
         return yLinearScale(data.lackHealthcare);
     })
-    .attr("r", "10")
-    // .attr("r", function(data, index){
-    //   return data.num_hits;
-    // })
-    .attr("fill", "blue")
+    .attr("r", "5")
+    .attr("fill", "grey")
     .on("click", function(data) {
         toolTip.show(data);
     })
-    // onmouseout event
+    // on mouseout event
     .on("mouseout", function(data, index) {
         toolTip.hide(data);
     });
@@ -111,47 +114,18 @@ d3.csv("data.csv", function(error, healthData) {
   chart.append("g")
     .call(leftAxis);
 
+  // Append y-axis label
   chart.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 - margin.left + 40)
-    .attr("x", 0 - (height / 2))
+    .attr("x", 0 - (height / 1.7))
     .attr("dy", "1em")
     .attr("class", "axisText")
     .text("Lack Healthcare (%)");
 
-// Append x-axis labels
+  // Append x-axis labels
   chart.append("text")
-    .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 30) + ")")
+    .attr("transform", "translate(" + (width / 2.7) + " ," + (height + margin.top + 30) + ")")
     .attr("class", "axisText")
-    .text("Bachelor's Degree or higher");
+    .text("Bachelor's Degree or higher (%)");
 });
-
-//   // Configure a drawLine function which will use our scales to plot the line's points
-//   var drawLine = d3
-//     .line()
-//     .x(function(data) {
-//       return xLinearScale(data.bachelors);
-//     })
-//     .y(function(data) {
-//       return yLinearScale(data.lackHealthcare);
-//     });
-
-//   // Append an SVG path and plot its points using the line function
-//   svg
-//     .append("path")
-//       // The drawLine function returns the instructions for creating the line for milesData
-//       .attr("d", drawLine(healthData))
-//       .attr("class", "line");
-
-//   // Append an SVG group element to the SVG area, create the left axis inside of it
-//   svg.append("g")
-//     .attr("class", "axis")
-//     .call(leftAxis);
-
-//   // Append an SVG group element to the SVG area, create the bottom axis inside of it
-//   // Translate the bottom axis to the bottom of the page
-//   svg.append("g")
-//     .attr("class", "axis")
-//     .attr("transform", "translate(0, " + chartHeight + ")")
-//     .call(bottomAxis);
-// });
