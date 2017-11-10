@@ -8,8 +8,28 @@ body {
   font: 14px sans-serif;
 }
 
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
+.tooltip {
+  position: absolute;
+  width:200px;
+  height: 58px;
+  padding: 2px;
+  padding-top: 8px;
+  font: 12px sans-serif;
+  color: white;
+  text-align: center;
+  background: #07425a;
+  border: 0;
+  border-radius: 10px;
+}
+
+.axisText {
+  font-weight: bold;
+  font: 18px sans-serif;
+}
+
+.circleText {
+  position: absolute;
+  font: 9px sans-serif;
+  color: white;
+  font-weight: bold;
 }
