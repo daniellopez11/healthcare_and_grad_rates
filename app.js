@@ -98,7 +98,7 @@ d3.csv("data.csv", function(error, healthData) {
         return yLinearScale(data.lackHealthcare);
     })
     .attr("r", "10")
-    .attr("fill", "grey")
+    .attr("fill", "#a0a6a8")
     .on("click", function(data) {
         toolTip.show(data);
     })
